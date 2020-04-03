@@ -10,12 +10,12 @@ assets: $(THEME_SOURCES)
 
 comply: assets $(GO_SOURCES)
 	@# $(eval VERSION := $(shell git describe --tags --always --dirty="-dev"))
-	@# $(eval LDFLAGS := -ldflags='-X "github.com/strongdm/comply/internal/cli.Version=$(VERSION)"')
-	go build $(LDFLAGS) github.com/strongdm/comply
+	@# $(eval LDFLAGS := -ldflags='-X "github.com/Zate/comply/internal/cli.Version=$(VERSION)"')
+	go build $(LDFLAGS) github.com/Zate/comply
 
 dist: clean
 	$(eval VERSION := $(shell git describe --tags --always --dirty="-dev"))
-	$(eval LDFLAGS := -ldflags='-X "github.com/strongdm/comply/internal/cli.Version=$(VERSION)"')
+	$(eval LDFLAGS := -ldflags='-X "github.com/Zate/comply/internal/cli.Version=$(VERSION)"')
 	mkdir dist
 	echo $(VERSION)
 	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -gcflags=-trimpath=$(GOPATH) -asmflags=-trimpath=$(GOPATH) -ldflags '-extldflags "-static"' $(LDFLAGS) -o dist/comply-$(VERSION)-darwin-amd64 .
@@ -27,7 +27,7 @@ dist: clean
 
 brew: clean $(GO_SOURCES)
 	$(eval VERSION := $(shell cat version))
-	$(eval LDFLAGS := -ldflags='-X "github.com/strongdm/comply/internal/cli.Version=$(VERSION)"')
+	$(eval LDFLAGS := -ldflags='-X "github.com/Zate/comply/internal/cli.Version=$(VERSION)"')
 	mkdir bin
 	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -gcflags=-trimpath=$(GOPATH) -asmflags=-trimpath=$(GOPATH) $(LDFLAGS) -o bin/comply .
 
@@ -37,7 +37,7 @@ clean:
 	rm -f comply
 
 install: assets $(GO_SOURCES)
-	go install github.com/strongdm/comply
+	go install github.com/Zate/comply
 
 push-assets: is-clean assets
 	git commit -am "automated asset refresh (via Makefile)"
@@ -98,7 +98,7 @@ release: release-env dist release-deps
 	--file dist/comply-$(VERSION)-linux-amd64.tgz
 
 	@echo "Update homebrew formula with the following: "
-	$(eval SHA := $(shell curl -s -L https://github.com/strongdm/comply/archive/$(VERSION).tar.gz |shasum -a 256|cut -d" " -f1))
+	$(eval SHA := $(shell curl -s -L https://github.com/Zate/comply/archive/$(VERSION).tar.gz |shasum -a 256|cut -d" " -f1))
 	@echo "version $(VERSION) sha $(SHA)"
 	cd $$COMPLY_TAPDIR && ./update.sh $(VERSION) $(SHA)
 
@@ -111,8 +111,8 @@ minor-release: release-env minor release
 	curl -X POST --data-urlencode 'payload={"channel": "#release", "username": "release", "text": "comply $(VERSION) released", "icon_emoji": ":shipit:"}' https://hooks.slack.com/services/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
 
 docker-release:
-	docker build --build-arg COMPLY_VERSION=`cat VERSION` -t strongdm/comply .
-	docker push strongdm/comply
+	docker build --build-arg COMPLY_VERSION=`cat VERSION` -t zate75/comply .
+	docker push zate75/comply
 
 patch: clean gitsem
 	gitsem -m "increment patch for release (via Makefile)" patch

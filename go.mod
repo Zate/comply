@@ -21,13 +21,11 @@ require (
 	github.com/jcelliott/lumber v0.0.0-20160324203708-dd349441af25 // indirect
 	github.com/manifoldco/promptui v0.7.0
 	github.com/nanobox-io/golang-scribble v0.0.0-20190309225732-aa3e7c118975
-	github.com/novalagung/gorep v0.0.0-20160927021757-96a7001c9934 // indirect
 	github.com/olekukonko/tablewriter v0.0.4
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/robfig/cron v1.2.0
 	github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
-	github.com/strongdm/comply v1.4.1
 	github.com/tomnomnom/linkheader v0.0.0-20180905144013-02ca5825eb80 // indirect
 	github.com/urfave/cli v1.22.4
 	github.com/voxelbrain/goptions v0.0.0-20180630082107-58cddc247ea2 // indirect
