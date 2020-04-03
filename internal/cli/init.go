@@ -9,9 +9,9 @@ import (
 	"strings"
 
 	"github.com/manifoldco/promptui"
-	"github.com/strongdm/comply/internal/config"
-	"github.com/strongdm/comply/internal/model"
-	"github.com/strongdm/comply/internal/theme"
+	"github.com/Zate/comply/internal/config"
+	"github.com/Zate/comply/internal/model"
+	"github.com/Zate/comply/internal/theme"
 	"github.com/urfave/cli"
 	"gopkg.in/yaml.v2"
 )

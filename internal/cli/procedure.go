@@ -3,8 +3,8 @@ package cli
 import (
 	"fmt"
 
-	"github.com/strongdm/comply/internal/config"
-	"github.com/strongdm/comply/internal/model"
+	"github.com/Zate/comply/internal/config"
+	"github.com/Zate/comply/internal/model"
 	"github.com/urfave/cli"
 )
 
